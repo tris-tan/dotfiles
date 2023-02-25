@@ -1,0 +1,35 @@
+selected region 0,0 0x0
+Setting codec option: rc_mode=CQP
+Framerate: 60
+Using video filter: hwupload,scale_vaapi=format=nv12,fps=60
+################################################################################
++----------+
+|  Source  |default--[3840x1600 1:1 rgb0]--Parsed_hwupload_0:default
+| (buffer) |
++----------+
+
+                                                    +--------------+
+Parsed_fps_2:default--[3840x1600 1:1 vaapi]--default|     Sink     |
+                                                    | (buffersink) |
+                                                    +--------------+
+
+                                             +-------------------+
+Source:default--[3840x1600 1:1 rgb0]--default| Parsed_hwupload_0 |default--[3840x1600 1:1 vaapi]--Parsed_scale_vaapi_1:default
+                                             |    (hwupload)     |
+                                             +-------------------+
+
+                                                         +----------------------+
+Parsed_hwupload_0:default--[3840x1600 1:1 vaapi]--default| Parsed_scale_vaapi_1 |default--[3840x1600 1:1 vaapi]--Parsed_fps_2:default
+                                                         |    (scale_vaapi)     |
+                                                         +----------------------+
+
+                                                            +--------------+
+Parsed_scale_vaapi_1:default--[3840x1600 1:1 vaapi]--default| Parsed_fps_2 |default--[3840x1600 1:1 vaapi]--Sink:default
+                                                            |    (fps)     |
+                                                            +--------------+
+
+
+################################################################################
+Setting codec option: rc_mode=CQP
+Choosing sample format s16 for audio codec libopus
+Using PulseAudio device: default

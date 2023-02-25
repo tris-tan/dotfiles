@@ -1,0 +1,1 @@
+timeout 300 'wayout --off DP-2' resume 'wayout --on DP-2' \\

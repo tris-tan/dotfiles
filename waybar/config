@@ -1,0 +1,123 @@
+{
+    "height": 35, // Waybar height (to be removed for auto height)
+    "margin-top": 3,
+    "margin-left": 10,
+    "margin-bottom": 0,
+    "margin-right": 10,
+    "layer": "top",
+    "spacing": 6,
+    "modules-left": [
+        "custom/launcher",
+        "cpu",
+        "memory",
+        "wlr/workspaces",
+        "custom/weather",
+        "custom/recorder"
+    ],
+    "modules-center": [
+        "custom/media"
+    ],
+    "modules-right": [
+        "tray",
+        "bluetooth",
+        "pulseaudio",
+        "network",
+        "clock"
+    ],
+    "wlr/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "active": "",
+            "default": ""
+        }
+    },
+    "hyprland/window": {
+        "format": "{}"
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "format": "<span color='#bf616a'> </span>{:%a %b %d <span color='#bf616a'> 󰅐</span> %I:%M %p} ",
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+    "cpu": {
+        "interval": 10,
+        "format": " {}%",
+        "max-length": 10,
+        "on-click": "",
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "format-alt": " {used:0.1f}G",
+        "max-length": 10,
+    },
+    "network": {
+        "format-wifi": "直 {signalStrength}%",
+        "format-ethernet": " wired",
+        "format-disconnected": "睊",
+        "on-click": "~/.config/rofi/wifi.sh",
+        "format-disconnected": "Disconnected  ",
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "  {volume}%",
+        "format-bluetooth-muted": " ",
+        "format-muted": "婢",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+    },
+    "bluetooth": {
+        "on-click": "~/.config/rofi/bluetooth.sh",
+        "format": " {status}",
+    },
+    "custom/launcher": {
+        "format": "  ",
+        "on-click": "~/.config/rofi/launcher.sh",
+        "on-click-right": "killall rofi"
+    },
+    "custom/weather": {
+        "exec": "python3 ~/.config/waybar/scripts/weather.py",
+        "restart-interval": 1800,
+        "return-type": "json",
+        "on-click": "xdg-open https://weather.com/en-GB/weather/today/l/7ed5683b44b5c5913bfcb3aeaa818d7351b521b29ed3526f99f75ae2b52caed9"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 25,
+        "format-icons": {
+            "spotify": " ",
+            "default": " "
+        },
+        "escape": true,
+        "exec": "python $HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null",
+        "on-click": "playerctl play-pause"
+    },
+    "custom/recorder": {
+        "format": "",
+        "return-type": "json",
+        "interval": 1,
+        "exec": "echo '{\"class\": \"recording\"}'",
+        "exec-if": "pgrep wf-recorder"
+    }
+}
